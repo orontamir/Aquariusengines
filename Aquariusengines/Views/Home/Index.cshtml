@@ -1,0 +1,195 @@
+﻿@model SignalDetailsViewModel;
+@{
+    ViewBag.Title = "Signals";
+}
+
+    <div class="card-deck justify-content-center" style="display: flex;justify-content: center;" id="drawChartTable">
+        <div style="display: flex;justify-content: center;">
+            <h2>טבלת שגיאות</h2>
+            <br />
+            <br />
+        </div>
+       
+        <div class=" rounded m-3">
+            <div id="control1"></div>
+        </div>
+        <div class=" rounded m-3">
+            <div id="control2"></div>
+        </div>
+    </div>
+<div class="card-deck justify-content-center" style="display: flex;justify-content: center;">
+    <div id="chart2"></div>
+</div>
+
+<div class="card-deck justify-content-center" style="display: flex;justify-content: center;">
+
+    <div class="rounded m-3">
+        <div style="display: flex;justify-content: center;">
+            <h2>Signal Sine</h2>
+            <br />
+            <br />
+        </div>
+        <div id="drawChartSine" style="width: 900px; height: 500px;"></div>
+    </div>
+    <div class="rounded m-3">
+        <div style="display: flex;justify-content: center;">
+            <h2>Signal State</h2>
+            <br />
+            <br />
+        </div>
+        <div id="drawChartSate" style="width: 900px; height: 500px;"></div>
+    </div>
+
+
+</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        //Load the Visualization API and the corechart package.
+        google.charts.load('current', { 'packages': ['corechart', 'bar', 'table', 'controls', 'gauge'] });
+        google.charts.setOnLoadCallback(drawChartSine);
+        google.charts.setOnLoadCallback(drawChartSate);
+        google.charts.setOnLoadCallback(drawChartTable);
+        setTimeout(window.onload, 3000);
+    };
+
+
+    function drawChartSine() {
+        var jsonData = $.ajax({
+            type: "GET",
+            url: '/Signal/GetSine/',
+            dataType: "json",
+            async: false
+        }).responseText;
+
+        // Create our data table out of JSON data loaded from server.
+        var data = new google.visualization.DataTable(jsonData);
+        var options = {
+            title: 'Signal SIne',
+            curveType: 'function',
+            legend: { position: 'bottom' }
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('drawChartSine'));
+        chart.draw(data, options);
+    }
+
+    function drawChartSate() {
+
+        var jsonData = $.ajax({
+            type: "GET",
+            url: '/Signal/GetState/',
+            dataType: "json",
+            async: false
+        }).responseText;
+
+        // Create our data table out of JSON data loaded from server.
+        var data = new google.visualization.DataTable(jsonData);
+        var options = {
+            title: 'Signal State',
+            hAxis: { title: 'Time' },
+            vAxis: { title: 'Value' },
+            legend: 'none'
+        };
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('drawChartSate'));
+        chart.draw(data, options);
+    }
+
+    function drawChartTable() {
+        var jsonData = $.ajax({
+            type: "GET",
+            url: '/Signal/GetError/',
+            dataType: "json",
+            async: false
+        }).responseText;
+
+        var cssClassNamesData = {
+            'headerRow': 'cssHeaderRow',
+            'tableRow': 'cssTableRow',
+            'oddTableRow': 'cssOddTableRow',
+            'selectedTableRow': 'cssSelectedTableRow',
+            'hoverTableRow': 'cssHoverTableRow',
+            'headerCell': 'cssHeaderCell',
+            'tableCell': 'cssTableCell',
+            'rowNumberCell': 'cssRowNumberCell'
+        };
+
+        // Create our data table out of JSON data loaded from server.
+        var data = new google.visualization.DataTable(jsonData);
+        var options = {
+            title: 'הודעות שגיאה',
+            width: 900,
+            height: 600,
+            showRowNumber: true,
+            cssClassNames: cssClassNamesData,
+            titleTextStyle: {
+                fontSize: 30
+
+            },
+            textStyle: {
+                fontSize: 20
+            }
+        };
+
+
+        var FunctionPicker = new google.visualization.ControlWrapper({
+            'controlType': 'CategoryFilter',
+            'containerId': 'control1',
+            'options': {
+                'filterColumnLabel': 'Type',
+                'ui': {
+                    'labelStacking': 'vertical',
+                    'allowTyping': false,
+                    'allowMultiple': false,
+                    'caption': 'בחר...',
+                }
+            }
+        });
+
+        var MessagePicker = new google.visualization.ControlWrapper({
+            'controlType': 'CategoryFilter',
+            'containerId': 'control2',
+            'options': {
+                'filterColumnLabel': 'Date',
+                'ui': {
+                    'labelStacking': 'vertical',
+                    'allowTyping': false,
+                    'allowMultiple': false,
+                    'caption': 'בחר...',
+                }
+            }
+        });
+
+        var table = new google.visualization.ChartWrapper({
+            'chartType': 'Table',
+            'containerId': 'chart2',
+            'options': {
+                'title': 'הודעות שגיאה',
+                'width': '900',
+                'height': '600',
+                'showRowNumber': 'true',
+                'cssClassNames': cssClassNamesData,
+                'titleTextStyle': {
+                    'fontSize': '30'
+                },
+                'textStyle': {
+                    'fontSize': '20'
+                }
+            }
+        });
+
+        // Create the dashboard.
+        var dashboard = new google.visualization.Dashboard(document.getElementById('drawChartTable'));
+        dashboard.bind(FunctionPicker, MessagePicker);
+        dashboard.bind([FunctionPicker, MessagePicker], [table]);
+        // Draw the dashboard
+        dashboard.draw(data);
+    }
+
+
+
+</script>
+
+

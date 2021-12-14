@@ -1,0 +1,198 @@
+﻿
+.tblStats {
+    border: solid /*#8f9292*/ lightgray !important;
+    border-radius: 5px;
+}
+    .tblStats th, .tblStats td {
+      
+    }
+
+.filterDiv {
+    height: 140px;
+    margin-top: 24px !important;
+}
+
+@media screen and (max-width: 950px) {
+    .filterDiv {
+/*height: 194px !important;*/
+    margin-top: 24px !important;
+}
+    .div-border {
+        height: 240px;
+    }
+    .filterBtn {height: 60px;
+  margin-bottom: 0% !important;
+    margin-top: 0px !important;
+    /* margin-top: -5.4%; */
+    width: 150px;
+    margin-left: 8%;
+    float: right;}
+    
+}
+
+.filter-sub_title {
+    width: 50%;
+    background-color: #00cfcb !important;
+    font-size: 100% !important;
+}
+.filter-title {
+    width: 105%;
+    margin-top: -12px;
+    text-align: center !important;
+    background-color: /*#13e4e0*/ #00cfcb !important;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.filterBtn {
+    height: 60px;
+    margin-bottom: 4%;
+    margin-top: 15px;
+    /* margin-top: -5.4%; */
+    width: 105px;
+    
+    float: right;
+    margin-left: 11%;
+  
+}
+    .filterBtn input {
+        height: 35px;
+    }
+    body {
+        /*padding-top: 50px;*/
+        padding-bottom: 20px;
+    }
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.mb {
+    margin-bottom: 1%;
+}
+
+.mt {
+    margin: 1% 2%;
+}
+
+.mtb {
+    margin: -7% 33%;
+}
+
+.mtc {
+    margin: -6% 30%;
+}
+
+.page-title {
+    font-size: 105% !important;
+    text-align: center !important;
+    /*font-weight: bold;*/
+}
+.create, .bck {
+    font-size: larger;
+}
+.inputCr{
+    width:50%;
+}
+.lbl{
+    width:30%;
+}
+.btitle{
+    font-size:22px;
+}
+
+.btnAdd{
+    font-size:large;
+}
+
+.ddm {
+    margin:1% -60%;
+}
+
+.ddc {
+    margin:1% -20%;
+}
+
+.row{
+    margin:auto !important;
+}
+
+.cssHeaderRow {
+    background-color: #F73F3F;
+}
+
+.cssTableRow {
+    background-color: #F0F1F2;
+}
+
+.cssOddTableRow {
+  //  background-color: #F0F1F2;
+}
+
+.cssSelectedTableRow {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.cssHoverTableRow {
+    background: #ccc;
+}
+
+.cssHeaderCell {
+    color: #FFFFFF;
+    font-size: 16px;
+    padding: 10px !important;
+    border: solid 1px #FFFFFF;
+    text-align: right;
+    background-color: #F73F3F;
+}
+
+.cssTableCell {
+    font-size: 16px;
+    padding: 10px !important;
+    border: solid 1px #FFFFFF;
+}
+
+.cssRowNumberCell {
+    text-align: center;
+}
