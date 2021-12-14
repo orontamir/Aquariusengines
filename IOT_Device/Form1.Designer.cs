@@ -89,7 +89,7 @@
             this.Controls.Add(this.StartBtn);
             this.Controls.Add(this.LogtextBox);
             this.Name = "Form1";
-            this.Text = "application_send_push_1259";
+            this.Text = "Aquariusengines";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
